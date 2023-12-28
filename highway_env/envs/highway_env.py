@@ -128,7 +128,7 @@ class HighwayEnv(AbstractEnv):
         )
 
         # Calculate lane change reward
-        lane_change_reward = float(action == Action.LANE_LEFT or action == Action.LANE_RIGHT)
+        lane_change_reward = float(action == 0 or action == 2)
 
 
         return {
