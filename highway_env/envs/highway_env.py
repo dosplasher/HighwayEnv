@@ -128,7 +128,13 @@ class HighwayEnv(AbstractEnv):
         )
 
         # Calculate lane change reward
-        lane_change_reward = float(action == 0 or action == 2)
+        if isinstance(action, np.ndarray):
+            # If action is an array, check if any element represents a lane change
+            lane_change_reward = float(np.any((action == 0) | (action == 2)))
+        else:
+            # If action is a single integer, check if it represents a lane change
+            lane_change_reward = float(action == 0 or action == 2)
+
 
 
         return {
